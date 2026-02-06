@@ -202,7 +202,6 @@
             font-weight: 700;
             background: linear-gradient(135deg, #60a5fa 0%, #3b82f6 100%);
             -webkit-background-clip: text;
-            background-clip: text;
             -webkit-text-fill-color: transparent;
         }
 
@@ -852,23 +851,23 @@
                     <form action="https://formsubmit.co/i.one.x.contact.77@gmail.com" method="POST">
                         <input type="hidden" name="_subject" value="New Investment Proposal from i-one-x Website">
                         <div class="form-group">
-                            <input type="text" name="name" placeholder="Name / Organization" required>
+                            <input type="text" name="organization" placeholder="Name / Organization" required>
                         </div>
                         <div class="form-group">
                             <input type="email" name="email" placeholder="Business Email" required>
                         </div>
                         <div class="form-group">
-                            <select name="subject" required>
+                            <select name="interest_type" required>
                                 <option value="" disabled selected>Interest Type</option>
-                                <option value="Seed Investment">Seed Investment</option>
-                                <option value="Venture Capital">Venture Capital</option>
-                                <option value="Strategic Partnership">Strategic Partnership</option>
-                                <option value="Research Grant">Research Grant</option>
-                                <option value="Other">Other</option>
+                                <option value="seed">Seed Investment</option>
+                                <option value="venture">Venture Capital</option>
+                                <option value="partnership">Strategic Partnership</option>
+                                <option value="grant">Research Grant</option>
+                                <option value="other">Other</option>
                             </select>
                         </div>
                         <div class="form-group">
-                            <textarea name="message" rows="5" placeholder="Proposal Summary" required></textarea>
+                            <textarea name="proposal" rows="5" placeholder="Proposal Summary" required></textarea>
                         </div>
                         <button type="submit" class="btn btn-primary" style="width: 100%;">
                             <i class="fas fa-chart-line"></i> Submit Proposal
