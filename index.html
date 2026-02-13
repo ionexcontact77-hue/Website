@@ -1,1089 +1,353 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta property="og:title" content="I one x">
-    <meta property="og:description"
-        content="i-one-x is pioneering the next generation of Advanced Ion Thruster technology. Specializing in high-efficiency plasma propulsion systems, we provide scalable, high-performance solutions for deep space missions and satellite commercialization.">
-    <meta property="og:url" content="https://www.i-one-x.com">
-    <title>i-one-x | Advanced Ion Thruster Technology</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <title>i-one-x | Large-Scale Ion Propulsion Systems</title>
+    
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Open+Sans:wght@300;400;500;600&display=swap"
-        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Plus+Jakarta+Sans:wght@200;400;600;800&display=swap" rel="stylesheet">
+
     <style>
-        /* Reset and Base Styles */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
+        /* I-ONE-X DESIGN SYSTEM v4.0
+           Focus: High-Fidelity Conceptual Engineering
+        */
         :root {
-            /* Professional Aerospace Palette */
-            --primary: #0f172a;
-            /* Deep Slate Blue */
-            --primary-light: #1e293b;
-            /* Lighter Slate */
-            --secondary: #3b82f6;
-            /* Trustworthy Blue */
-            --accent: #0ea5e9;
-            /* Sky Blue */
-            --dark: #020617;
-            /* Almost Black */
-            --light: #f8fafc;
-            /* Off-White */
-            --gray: #94a3b8;
-            /* Cool Gray */
-            --border: rgba(255, 255, 255, 0.1);
-            --transition: all 0.2s ease-in-out;
-            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            --bg: #030303;
+            --surface-low: #080808;
+            --surface-mid: #0d0d0d;
+            --surface-high: #141414;
+            --border: #1f1f1f;
+            --accent: #3b82f6;
+            --accent-dim: rgba(59, 130, 246, 0.1);
+            --text-primary: #ffffff;
+            --text-secondary: #a1a1aa;
+            --text-dim: #4b4b4b;
+            --font-main: 'Plus Jakarta Sans', sans-serif;
+            --font-mono: 'JetBrains Mono', monospace;
+            --header-height: 90px;
+            --transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
-        html {
-            scroll-behavior: smooth;
-        }
-
-        body {
-            font-family: 'Open Sans', sans-serif;
+        /* GLOBAL RESET */
+        * { margin: 0; padding: 0; box-sizing: border-box; outline: none; }
+        html { scroll-behavior: smooth; }
+        body { 
+            background: var(--bg); 
+            color: var(--text-primary); 
+            font-family: var(--font-main); 
             line-height: 1.7;
-            color: var(--light);
-            background-color: var(--dark);
-            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
         }
 
-        h1,
-        h2,
-        h3,
-        h4,
-        h5,
-        h6 {
-            font-family: 'Montserrat', sans-serif;
-            font-weight: 600;
-            margin-bottom: 1rem;
-            letter-spacing: -0.5px;
-            color: #ffffff;
-        }
+        /* SCROLLBAR */
+        ::-webkit-scrollbar { width: 4px; }
+        ::-webkit-scrollbar-track { background: var(--bg); }
+        ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 10px; }
 
-        .container {
-            width: 90%;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 15px;
-        }
+        /* LAYOUT & CONTAINERS */
+        .container { max-width: 1300px; margin: 0 auto; padding: 0 3rem; }
+        .flex-center { display: flex; align-items: center; justify-content: space-between; }
+        .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; }
+        .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; }
+        section { padding: 140px 0; border-bottom: 1px solid var(--border); }
+        
+        /* TYPOGRAPHY */
+        .mono { font-family: var(--font-mono); font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.2em; color: var(--accent); }
+        h1 { font-size: clamp(3.5rem, 11vw, 7.5rem); font-weight: 800; line-height: 0.85; letter-spacing: -0.06em; margin-bottom: 2.5rem; }
+        h2 { font-size: 3.8rem; font-weight: 700; line-height: 1; margin-bottom: 2rem; letter-spacing: -0.04em; }
+        h3 { font-size: 1.6rem; margin-bottom: 1.2rem; font-weight: 600; color: #fff; }
+        p { font-size: 1.2rem; color: var(--text-secondary); max-width: 750px; font-weight: 300; }
+        .dim { color: var(--text-dim); }
 
-        section {
-            padding: 100px 0;
-        }
-
-        /* Header & Navigation */
-        header {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            z-index: 1000;
-            background-color: rgba(2, 6, 23, 0.95);
-            backdrop-filter: blur(8px);
+        /* NAVIGATION */
+        nav {
+            position: fixed; top: 0; width: 100%; z-index: 1000;
+            background: rgba(3, 3, 3, 0.9);
+            backdrop-filter: blur(25px);
             border-bottom: 1px solid var(--border);
-            padding: 20px 0;
+            height: var(--header-height);
+            display: flex; align-items: center;
+        }
+        .nav-inner { display: flex; justify-content: space-between; align-items: center; width: 100%; }
+        .logo { font-family: var(--font-mono); font-weight: 800; font-size: 1.5rem; color: #fff; text-decoration: none; letter-spacing: -1px; }
+        .nav-links { display: flex; gap: 3.5rem; }
+        .nav-links a { text-decoration: none; color: var(--text-secondary); font-family: var(--font-mono); font-size: 0.75rem; transition: var(--transition); }
+        .nav-links a:hover { color: var(--accent); }
+
+        /* HERO SECTION */
+        .hero { padding: 260px 0 140px; }
+        .status-pill { 
+            background: var(--surface-mid); border: 1px solid var(--border); 
+            padding: 10px 20px; border-radius: 100px; display: inline-flex; 
+            align-items: center; gap: 12px; margin-bottom: 3.5rem;
+        }
+        .status-indicator { width: 10px; height: 10px; background: var(--accent); border-radius: 50%; box-shadow: 0 0 15px var(--accent); }
+        .hero-actions { display: flex; gap: 2.5rem; margin-top: 5rem; align-items: center; }
+        .btn-primary { background: var(--text-primary); color: var(--bg); padding: 1.4rem 3.5rem; border-radius: 2px; text-decoration: none; font-weight: 800; transition: var(--transition); }
+        .btn-primary:hover { transform: translateY(-5px); box-shadow: 0 10px 40px rgba(59, 130, 246, 0.2); }
+        .btn-secondary { color: var(--text-secondary); text-decoration: none; font-family: var(--font-mono); font-size: 0.8rem; border-bottom: 1px solid var(--border); padding-bottom: 5px; transition: var(--transition); }
+        .btn-secondary:hover { border-color: var(--accent); color: #fff; }
+
+        /* CONTENT CARDS */
+        .card { 
+            background: var(--surface-low); border: 1px solid var(--border); 
+            padding: 4rem; border-radius: 2px; transition: var(--transition);
+        }
+        .card:hover { border-color: var(--accent); background: var(--surface-mid); transform: scale(1.02); }
+
+        /* RESEARCH AREAS BLOCK */
+        .research-item { 
+            padding: 2.5rem 0; border-bottom: 1px solid var(--border); 
+            display: flex; justify-content: space-between; align-items: flex-start;
             transition: var(--transition);
         }
-
-        header.scrolled {
-            padding: 15px 0;
-            box-shadow: var(--shadow);
-        }
-
-        .header-container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .logo {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            font-family: 'Montserrat', sans-serif;
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: #ffffff;
-            text-decoration: none;
-            letter-spacing: -0.5px;
-        }
-
-        .logo span {
-            color: var(--secondary);
-            font-weight: 700;
-        }
-
-        .logo-icon {
-            font-size: 1.4rem;
-            color: var(--secondary);
-        }
-
-        .nav-menu {
-            display: flex;
-            list-style: none;
-            gap: 40px;
-        }
-
-        .nav-menu a {
-            color: var(--gray);
-            text-decoration: none;
-            font-weight: 500;
-            font-size: 0.95rem;
-            transition: var(--transition);
-            font-family: 'Montserrat', sans-serif;
-        }
-
-        .nav-menu a:hover {
-            color: var(--light);
-        }
-
-        .nav-menu a.active {
-            color: var(--secondary);
-        }
-
-        .mobile-toggle {
-            display: none;
-            font-size: 1.5rem;
-            color: var(--light);
-            cursor: pointer;
-        }
-
-        /* Hero Section */
-        .hero {
-            padding-top: 120px;
-            min-height: 90vh;
-            display: flex;
-            align-items: center;
-            background: linear-gradient(to bottom right, #020617, #0f172a);
-            position: relative;
-            overflow: hidden;
-        }
-
-        /* Subtle professional grid pattern instead of space gradient */
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-image:
-                linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
-            background-size: 50px 50px;
-            opacity: 0.5;
-            z-index: 1;
-            mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 1) 40%, rgba(0, 0, 0, 0) 100%);
-        }
-
-        .hero-content {
-            max-width: 800px;
-            position: relative;
-            z-index: 2;
-        }
-
-        .hero h1 {
-            font-size: 4rem;
-            margin-bottom: 24px;
-            line-height: 1.1;
-        }
-
-        .hero h1 span {
-            color: var(--secondary);
-            font-weight: 700;
-            background: linear-gradient(135deg, #60a5fa 0%, #3b82f6 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        .hero p {
-            font-size: 1.25rem;
-            margin-bottom: 40px;
-            color: var(--gray);
-            max-width: 650px;
-            font-weight: 300;
-        }
-
-        .hero-btns {
-            display: flex;
-            gap: 16px;
-        }
-
-        .btn {
-            padding: 12px 28px;
-            border-radius: 6px;
-            font-weight: 600;
-            text-decoration: none;
-            transition: var(--transition);
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            font-family: 'Montserrat', sans-serif;
-            font-size: 0.95rem;
-            letter-spacing: 0.5px;
-        }
-
-        .btn-primary {
-            background-color: var(--secondary);
-            color: #ffffff;
-            border: 1px solid var(--secondary);
-        }
-
-        .btn-primary:hover {
-            background-color: #2563eb;
-            transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
-        }
-
-        .btn-secondary {
-            background-color: transparent;
-            color: var(--light);
-            border: 1px solid var(--gray);
-        }
-
-        .btn-secondary:hover {
-            border-color: var(--light);
-            background-color: rgba(255, 255, 255, 0.05);
-            transform: translateY(-2px);
-        }
-
-        /* Section Titles */
-        .section-title {
-            margin-bottom: 60px;
-        }
-
-        .section-title h2 {
-            font-size: 2.25rem;
-            display: inline-block;
-            position: relative;
-            margin-bottom: 16px;
-        }
-
-        .section-title::after {
-            content: '';
-            display: block;
-            width: 60px;
-            height: 4px;
-            background-color: var(--secondary);
-            margin-top: 8px;
-            border-radius: 2px;
-        }
-
-        /* About Section */
-        .about {
-            background-color: #0b1120;
-        }
-
-        .about-content {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 80px;
-            align-items: center;
-        }
-
-        .about-text p {
-            margin-bottom: 24px;
-            color: var(--gray);
-            font-size: 1.05rem;
-        }
-
-        .about-image img {
-            width: 100%;
-            border-radius: 8px;
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
-            border: 1px solid var(--border);
-        }
-
-        /* Cards Guidelines */
-        .system-overview {
-            background-color: var(--dark);
-        }
-
-        .system-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 30px;
-        }
-
-        .system-card {
-            background-color: var(--primary-light);
-            border-radius: 8px;
-            padding: 40px 30px;
-            transition: var(--transition);
-            border: 1px solid var(--border);
-            height: 100%;
-        }
-
-        .system-card:hover {
-            transform: translateY(-5px);
-            border-color: var(--secondary);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-        }
-
-        .system-icon {
-            font-size: 2rem;
-            color: var(--secondary);
-            margin-bottom: 24px;
-            background: rgba(59, 130, 246, 0.1);
-            width: 60px;
-            height: 60px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border-radius: 8px;
-        }
-
-        .system-card h3 {
-            font-size: 1.25rem;
-            margin-bottom: 16px;
-            color: var(--light);
-        }
-
-        .system-card p {
-            color: var(--gray);
-            font-size: 0.95rem;
-            line-height: 1.6;
-        }
-
-        /* Requirements Section */
-        .requirements {
-            background-color: #0b1120;
-            border-top: 1px solid var(--border);
-        }
-
-        .requirements-content {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 60px;
-            align-items: start;
-        }
-
-        .req-category {
-            margin-bottom: 40px;
-        }
-
-        .req-category h3 {
-            color: var(--secondary);
-            font-size: 1.2rem;
-            margin-bottom: 20px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            font-weight: 700;
-        }
-
-        .req-list {
-            list-style: none;
-        }
-
-        .req-item {
-            margin-bottom: 12px;
-            padding-left: 20px;
-            position: relative;
-            color: var(--gray);
-            font-size: 0.95rem;
-        }
-
-        .req-item::before {
-            content: '';
-            position: absolute;
-            left: 0;
-            top: 10px;
-            width: 6px;
-            height: 6px;
-            background-color: var(--secondary);
-            border-radius: 50%;
-        }
-
-        /* Performance Table - Clean Professional Style */
-        .performance-table {
-            background-color: var(--primary-light);
-            border-radius: 8px;
-            overflow: hidden;
-            border: 1px solid var(--border);
-            box-shadow: var(--shadow);
-        }
-
-        .performance-table h3 {
-            background-color: rgba(59, 130, 246, 0.1);
-            margin: 0;
-            padding: 20px;
-            font-size: 1.1rem;
-            color: var(--light);
-            border-bottom: 1px solid var(--border);
-        }
-
-        table {
-            width: 100%;
-            border-collapse: collapse;
-        }
-
-        th {
-            background-color: rgba(0, 0, 0, 0.2);
-            color: var(--gray);
-            padding: 16px 24px;
-            text-align: left;
-            font-weight: 600;
-            font-size: 0.85rem;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            border-bottom: 1px solid var(--border);
-        }
-
-        td {
-            padding: 16px 24px;
-            border-bottom: 1px solid var(--border);
-            color: var(--light);
-            font-size: 0.95rem;
-        }
-
-        tr:last-child td {
-            border-bottom: none;
-        }
-
-        tr:hover td {
-            background-color: rgba(255, 255, 255, 0.02);
-        }
-
-        /* Contact Section */
-        .contact {
-            background-color: var(--dark);
-        }
-
-        .contact-container {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 40px;
-        }
-
-        .contact-form {
-            background-color: var(--primary-light);
-            padding: 40px;
-            border-radius: 8px;
-            border: 1px solid var(--border);
-        }
-
-        .contact-form h3 {
-            margin-bottom: 24px;
-            font-size: 1.4rem;
-        }
-
-        .form-group {
-            margin-bottom: 20px;
-        }
-
-        .contact-form input,
-        .contact-form select,
-        .contact-form textarea {
-            width: 100%;
-            padding: 14px;
-            background-color: var(--dark);
-            border: 1px solid var(--border);
-            border-radius: 6px;
-            color: var(--light);
-            font-family: 'Open Sans', sans-serif;
-            font-size: 0.95rem;
-            transition: var(--transition);
-        }
-
-        .contact-form input:focus,
-        .contact-form select:focus,
-        .contact-form textarea:focus {
-            outline: none;
-            border-color: var(--secondary);
-            box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.2);
-        }
-
-        /* Form status messages */
-        .form-status {
-            margin-top: 20px;
-            padding: 12px;
-            border-radius: 6px;
-            display: none;
-            text-align: center;
-            font-weight: 500;
-        }
-
-        .form-status.success {
-            background-color: rgba(34, 197, 94, 0.1);
-            border: 1px solid rgba(34, 197, 94, 0.3);
-            color: #4ade80;
-            display: block;
-        }
-
-        .form-status.error {
-            background-color: rgba(239, 68, 68, 0.1);
-            border: 1px solid rgba(239, 68, 68, 0.3);
-            color: #f87171;
-            display: block;
-        }
-
-        /* Footer */
-        footer {
-            background-color: #020617;
-            padding: 80px 0 30px;
-            border-top: 1px solid var(--border);
-            font-size: 0.95rem;
-        }
-
-        .footer-content {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 40px;
-            margin-bottom: 60px;
-        }
-
-        .footer-logo {
-            font-family: 'Montserrat', sans-serif;
-            font-size: 1.8rem;
-            font-weight: 700;
-            color: var(--light);
-            margin-bottom: 16px;
-        }
-
-        .footer-logo span {
-            color: var(--secondary);
-        }
-
-        .footer-about p {
-            color: var(--gray);
-            line-height: 1.6;
-        }
-
-        .footer-links h4,
-        .footer-contact h4 {
-            color: var(--light);
-            margin-bottom: 24px;
-            font-size: 1.1rem;
-            font-weight: 600;
-        }
-
-        .footer-links ul {
-            list-style: none;
-        }
-
-        .footer-links li {
-            margin-bottom: 12px;
-        }
-
-        .footer-links a {
-            color: var(--gray);
-            text-decoration: none;
-            transition: var(--transition);
-        }
-
-        .footer-links a:hover {
-            color: var(--secondary);
-        }
-
-        .copyright {
-            text-align: center;
-            padding-top: 30px;
-            border-top: 1px solid var(--border);
-            color: var(--gray);
-            font-size: 0.85rem;
-        }
-
-        /* Responsive Design */
-        @media (max-width: 992px) {
-            .hero h1 {
-                font-size: 3rem;
-            }
-
-            .about-content,
-            .requirements-content,
-            .contact-container {
-                grid-template-columns: 1fr;
-                gap: 50px;
-            }
-        }
-
-        @media (max-width: 768px) {
-            .nav-menu {
-                position: fixed;
-                top: 70px;
-                left: -100%;
-                width: 100%;
-                height: calc(100vh - 70px);
-                background-color: var(--primary-light);
-                flex-direction: column;
-                align-items: center;
-                justify-content: flex-start;
-                padding-top: 60px;
-                transition: var(--transition);
-            }
-
-            .nav-menu.active {
-                left: 0;
-            }
-
-            .mobile-toggle {
-                display: block;
-            }
-
-            .hero h1 {
-                font-size: 2.5rem;
-            }
-
-            .hero-btns {
-                flex-direction: column;
-                width: 100%;
-            }
-
-            .btn {
-                width: 100%;
-                justify-content: center;
-            }
+        .research-item:last-child { border-bottom: none; }
+        .research-item.active { border-left: 4px solid var(--accent); padding-left: 2rem; background: var(--accent-dim); }
+        .research-label { font-family: var(--font-mono); font-size: 0.8rem; font-weight: bold; }
+        .research-desc { max-width: 500px; font-size: 0.95rem; color: var(--text-secondary); }
+
+        /* THE GAP CONCEPTUAL VISUAL */
+        .gap-container { background: var(--surface-low); padding: 5rem; border: 1px solid var(--border); position: relative; overflow: hidden; }
+        .blueprint-overlay { position: absolute; inset: 0; background-image: radial-gradient(var(--border) 1px, transparent 1px); background-size: 30px 30px; opacity: 0.4; }
+
+        /* TEAM SECTION */
+        .team-box { background: var(--surface-mid); border: 1px solid var(--border); padding: 5rem; }
+        .member-info { margin-bottom: 4rem; }
+        .member-role { font-family: var(--font-mono); color: var(--accent); font-size: 0.8rem; margin-bottom: 1rem; display: block; }
+        
+        /* CONTACT FORM */
+        .contact-layout { display: grid; grid-template-columns: 0.8fr 1.2fr; gap: 8rem; }
+        .form-field { margin-bottom: 2rem; }
+        .form-field label { display: block; font-family: var(--font-mono); font-size: 0.7rem; color: var(--text-dim); margin-bottom: 1rem; text-transform: uppercase; }
+        input, select, textarea {
+            width: 100%; background: var(--surface-high); border: 1px solid var(--border);
+            padding: 1.5rem; color: #fff; font-family: var(--font-main); font-size: 1rem;
+            transition: var(--transition); border-radius: 0;
+        }
+        input:focus, textarea:focus { border-color: var(--accent); }
+        .submit-trigger {
+            background: var(--text-primary); color: var(--bg); border: none; padding: 1.5rem;
+            font-weight: 900; width: 100%; cursor: pointer; transition: var(--transition); text-transform: uppercase; font-family: var(--font-mono);
+        }
+        .submit-trigger:hover { background: var(--accent); color: #fff; }
+
+        /* FOOTER */
+        footer { padding: 120px 0 60px; border-top: 1px solid var(--border); background: #010101; }
+        .footer-wrap { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 5rem; margin-bottom: 80px; }
+        .footer-logo { font-family: var(--font-mono); font-weight: 900; font-size: 1.8rem; color: #fff; text-decoration: none; }
+        .footer-head { font-family: var(--font-mono); color: var(--text-dim); font-size: 0.7rem; margin-bottom: 2rem; text-transform: uppercase; }
+        .footer-link { display: block; color: var(--text-secondary); text-decoration: none; margin-bottom: 1rem; font-size: 0.95rem; transition: var(--transition); }
+        .footer-link:hover { color: var(--accent); padding-left: 5px; }
+
+        /* RESPONSIVE */
+        @media (max-width: 1024px) {
+            .grid-2, .grid-3, .contact-layout, .footer-wrap { grid-template-columns: 1fr; gap: 4rem; }
+            h1 { font-size: 4.5rem; }
+            h2 { font-size: 3rem; }
+            .nav-links { display: none; }
         }
     </style>
 </head>
-
 <body>
-    <!-- Header & Navigation -->
-    <header id="header">
-        <div class="container header-container">
-            <a href="#" class="logo">
-                <i class="fas fa-rocket logo-icon"></i>
-                i-<span>one</span>-x
-            </a>
 
-            <div class="mobile-toggle" id="mobile-toggle">
-                <i class="fas fa-bars"></i>
+    <nav>
+        <div class="container nav-inner">
+            <a href="index.html" class="logo">I-ONE-X</a>
+            <div class="nav-links">
+                <a href="#thesis">_Thesis</a>
+                <a href="#architecture">_Architecture</a>
+                <a href="#research">_R&D_Focus</a>
+                <a href="#team">_Leadership</a>
+                <a href="#contact">_Contact</a>
             </div>
+        </div>
+    </nav>
 
-            <ul class="nav-menu" id="nav-menu">
-                <li><a href="#home">Home</a></li>
-                <li><a href="#about">About</a></li>
-                <li><a href="#system">System</a></li>
-                <li><a href="#requirements">Requirements</a></li>
-                <li><a href="#contact">Contact</a></li>
-            </ul>
+    <header class="container hero">
+        <div class="status-pill">
+            <div class="status-indicator"></div>
+            <span class="mono" style="color: #fff;">Stage: Concept / Simulation</span>
+        </div>
+        <h1>Heavy-Lift <br>Ion Mobility.</h1>
+        <p>We are investigating large-diameter gridded ion thruster concepts targeting higher thrust regimes than current small-satellite systems. Current work focuses on simulation-driven evaluation of subsystem performance and feasibility.</p>
+        <div class="hero-actions">
+            <a href="#contact" class="btn-primary">Inquiry</a>
+            <a href="#thesis" class="btn-secondary">The Thesis ↓</a>
         </div>
     </header>
 
-    <!-- Hero Section -->
-    <section class="hero" id="home">
+    <section id="thesis">
         <div class="container">
-            <div class="hero-content">
-                <h1>Advanced <span>Ion Thruster</span> Technology</h1>
-                <p>Starting as a high school student research initiative, i-one-x has evolved into a formidable
-                    commercial capability. We are bridging the gap between scientific ambition and market-ready
-                    propulsion, making high-power ion thrusters available for the next generation of deep space
-                    missions.</p>
-
-                <div class="hero-btns">
-                    <a href="#system" class="btn btn-primary">
-                        <i class="fas fa-cogs"></i> System Overview
-                    </a>
-                    <a href="#contact" class="btn btn-secondary">
-                        <i class="fas fa-envelope"></i> Contact Our Team
-                    </a>
+            <span class="mono">01 // Executive Thesis</span>
+            <div class="grid-2" style="margin-top: 4rem; align-items: center;">
+                <div>
+                    <h2>Scaling Electric Propulsion</h2>
+                </div>
+                <div>
+                    <p>Most electric propulsion systems today are designed for small satellites operating in low Earth orbit. While efficient, these platforms do not scale cleanly in thrust, thermal management, or lifetime for higher-mass orbital transfers.</p>
+                    <p style="margin-top: 2rem; color: var(--text-dim);">i-one-x is exploring large-class gridded ion thruster architectures through computational modeling of discharge chambers, acceleration grids, and thermal behavior. This project is currently in an early research phase, with efforts focused on subsystem-level feasibility prior to hardware development.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- About Section -->
-    <section class="about" id="about">
+    <section id="architecture" style="background: var(--surface-low);">
         <div class="container">
-            <div class="section-title">
-                <h2>About i-one-x</h2>
+            <div style="margin-bottom: 6rem;">
+                <span class="mono">02 // System Architecture</span>
+                <h2 style="margin-top: 1.5rem;">Modular Foundations.</h2>
             </div>
+            
+            
 
-            <div class="about-content">
-                <div class="about-text">
-                    <p>What began as a groundbreaking high school student research project has evolved into a visionary
-                        enterprise. i-one-x represents the next generation of aerospace innovation, proving that
-                        ambitious engineering knows no age. Still fueled by the passion and leadership of its student
-                        founder, we are driven by a dual mission.</p>
-                    <p>We aim to advance the frontiers of ion propulsion research while simultaneously working to make
-                        large-scale, high-power ion thrusters commercially accessible. We bridge the gap between
-                        academic inquiry and industry-ready hardware.</p>
-                    <p>Our commitment to rigorous testing and development ensures that our technology meets the demands
-                        of deep space missions and satellite constellation management, democratizing access to advanced
-                        propulsion.</p>
+            <div class="grid-3">
+                <div class="card">
+                    <span class="mono" style="margin-bottom: 1.5rem; display: block;">Component A</span>
+                    <h3>High-Flow Ionization</h3>
+                    <p class="dim" style="font-size: 0.95rem;">Modeling discharge chambers to improve propellant utilization and plasma density uniformity in large-diameter geometries</p>
                 </div>
-
-                <div class="about-image">
-                    <div class="image-overlay"></div>
-                    <img src="IonThruster.png" alt="Ion Thruster Technology">
+                <div class="card">
+                    <span class="mono" style="margin-bottom: 1.5rem; display: block;">Component B</span>
+                    <h3>Electrostatic Grids</h3>
+                    <p class="dim" style="font-size: 0.95rem;">Evaluating multi-grid acceleration concepts with emphasis on erosion behavior and projected operational lifetime.</p>
+                </div>
+                <div class="card">
+                    <span class="mono" style="margin-bottom: 1.5rem; display: block;">Component C</span>
+                    <h3>Plume Control</h3>
+                    <p class="dim" style="font-size: 0.95rem;">Studying neutralizer integration to maintain charge balance and reduce plume interaction effects.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- System Overview -->
-    <section class="system-overview" id="system">
+    <section id="research">
         <div class="container">
-            <div class="section-title">
-                <h2>System Overview</h2>
-            </div>
-
-            <div class="system-grid">
-                <div class="system-card">
-                    <div class="system-icon">
-                        <i class="fas fa-atom"></i>
-                    </div>
-                    <h3>Discharge Chamber</h3>
-                    <p>The plasma generation subsystem where Xenon propellant is ionized to create positive ions.
-                        Includes hollow cathode, anode, propellant injectors, and magnetic confinement for optimal
-                        ionization efficiency.</p>
+            <div class="grid-2">
+                <div>
+                    <span class="mono">03 // Active R&D Pillars</span>
+                    <h2 style="margin-top: 1.5rem;">Priority <br>Workstreams.</h2>
+                    <p class="dim">Current efforts are focused on simulation and feasibility analysis prior to any physical prototyping.</p>
                 </div>
-
-                <div class="system-card">
-                    <div class="system-icon">
-                        <i class="fas fa-bolt"></i>
+                <div style="background: var(--surface-low); border: 1px solid var(--border); padding: 1rem;">
+                    
+                    <div class="research-item active">
+                        <div>
+                            <span class="research-label">Magnetic Confinement</span>
+                            <p class="mono" style="font-size: 0.6rem; color: var(--accent); margin-top: 0.5rem;">Current Phase: Simulation Stage</p>
+                        </div>
+                        <div class="research-desc">
+                            Researching permanent magnet arrangements to optimize plasma confinement and reduce ion loss to the discharge chamber walls.
+                        </div>
                     </div>
-                    <h3>Accelerator Grids</h3>
-                    <p>Multi-grid system that electrostatically accelerates ions to create thrust. The screen grid
-                        shapes ion trajectories while protecting the accelerator grid from direct plasma contact.</p>
-                </div>
 
-                <div class="system-card">
-                    <div class="system-icon">
-                        <i class="fas fa-microchip"></i>
+                    <div class="research-item">
+                        <span class="research-label">Thermal Dynamics</span>
+                        <div class="research-desc">
+                            Modeling radiant heat rejection requirements for high-power (10kW+) thruster operation in vacuum environments.
+                        </div>
                     </div>
-                    <h3>Control Systems</h3>
-                    <p>Includes the Power Processing Unit (PPU), Thruster Control Electronics (TCE), and neutralizer
-                        cathode for beam neutralization. Ensures stable operation and fault protection.</p>
+
+                    <div class="research-item">
+                        <span class="research-label">Grid Erosion</span>
+                        <div class="research-desc">
+                            Simulating ion impingement profiles to predict grid life-cycles and optimize aperture alignment.
+                        </div>
+                    </div>
+
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Requirements Section -->
-    <section class="requirements" id="requirements">
+    <section id="team" style="background: #050505;">
         <div class="container">
-            <div class="section-title">
-                <h2>System Requirements</h2>
-            </div>
-
-            <div class="requirements-content">
-                <div class="requirements-list">
-                    <div class="req-category">
-                        <h3>Functional Requirements</h3>
-                        <ul class="req-list">
-                            <li class="req-item">Produce positive thrust along nominal axis when commanded</li>
-                            <li class="req-item">Survive operational environment without functional degradation</li>
-                            <li class="req-item">Ionize supplied propellant to form plasma during all operational stages
-                            </li>
-                            <li class="req-item">Maintain continuous beam neutralization</li>
-                            <li class="req-item">Operate at any commanded thrust level within throttle range</li>
-                            <li class="req-item">Maintain stable discharge conditions without collapse or runaway
-                                currents</li>
-                            <li class="req-item">Execute autonomous safe startup and shutdown sequences</li>
-                        </ul>
-                    </div>
-
-                    <div class="req-category">
-                        <h3>Environmental Requirements</h3>
-                        <ul class="req-list">
-                            <li class="req-item">Withstand launch vibration environments (≥600Hz structural frequency)
-                            </li>
-                            <li class="req-item">Operate in high-vacuum conditions (≤1×10⁻⁵ Torr)</li>
-                            <li class="req-item">Survive temperature range of -93°C to +138°C</li>
-                            <li class="req-item">Minimum 4-year operational lifetime in space</li>
-                            <li class="req-item">Capable of 5 years ground storage</li>
-                            <li class="req-item">30 hours failure-free burn-in operation</li>
-                        </ul>
-                    </div>
+            <span class="mono">04 // Team & Origin</span>
+            <div class="grid-2" style="margin-top: 4rem; align-items: flex-start;">
+                <div>
+                    <h2>Team</h2>
+                    <p>i-one-x originated from collaborative work in competitive physics. We currently operate as a small, independent research effort focused on early-stage electric propulsion modeling.</p>
                 </div>
-
-                <div class="performance-table">
-                    <h3>Key Performance Parameters</h3>
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>Parameter</th>
-                                <th>Target Value</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>Specific Impulse (Isp)</td>
-                                <td>3350 s</td>
-                            </tr>
-                            <tr>
-                                <td>Thrust (T)</td>
-                                <td>75 mN</td>
-                            </tr>
-                            <tr>
-                                <td>Input Power (Pin)</td>
-                                <td>2000 W</td>
-                            </tr>
-                            <tr>
-                                <td>Overall Efficiency (η)</td>
-                                <td>0.60</td>
-                            </tr>
-                            <tr>
-                                <td>Maximum Thruster Mass</td>
-                                <td>≤ 10 kg</td>
-                            </tr>
-                            <tr>
-                                <td>Lifetime (Firing Time)</td>
-                                <td>> 8000 hours</td>
-                            </tr>
-                        </tbody>
-                    </table>
+                <div class="team-box">
+                    <div class="member-info">
+                        <span class="member-role">Founder // Engineering & Simulation</span>
+                        <h3>Laurenz Grasser</h3>
+                        <p class="dim" style="font-size: 1rem;">Working on conceptual system architecture and computational modeling, with emphasis on ion acceleration behavior and scaling considerations.</p>
+                    </div>
+                    <div class="member-info">
+                        <span class="member-role">COO // Operations</span>
+                        <h3>Julius Rebernik</h3>
+                        <p class="dim" style="font-size: 1rem;">Overseeing corporate strategy, investor relations, and the roadmap to business registration.</p>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Contact Section -->
-    <section class="contact" id="contact">
+    <section id="contact">
         <div class="container">
-            <div class="section-title">
-                <h2>Contact & Investment</h2>
-            </div>
-
-            <div class="contact-container">
-                <!-- General Inquiries -->
-                <div class="contact-form">
-                    <h3>General Inquiries</h3>
-                    <form id="general-form" method="POST">
-                        <div class="form-group">
-                            <input type="text" name="name" id="general-name" placeholder="Your Name" required>
-                        </div>
-                        <div class="form-group">
-                            <input type="email" name="email" id="general-email" placeholder="Your Email" required>
-                        </div>
-                        <div class="form-group">
-                            <input type="text" name="subject" id="general-subject" placeholder="Subject" required>
-                        </div>
-                        <div class="form-group">
-                            <textarea name="message" id="general-message" rows="5" placeholder="Message" required></textarea>
-                        </div>
-                        <div id="general-status" class="form-status"></div>
-                        <button type="submit" class="btn btn-primary" style="width: 100%;">
-                            <i class="fas fa-paper-plane"></i> Send Message
-                        </button>
-                    </form>
+            <div class="contact-layout">
+                <div>
+                    <span class="mono">05 // Contact</span>
+                    <h2 style="margin-top: 1.5rem;">Contact</h2>
+                    <p class="dim" style="margin-top: 2rem;">We are open to conversations with technical mentors and domain experts interested in early-stage electric propulsion research.</p>
                 </div>
 
-                <!-- Investment Form -->
-                <div class="contact-form">
-                    <h3>Investment & Partnerships</h3>
-                    <form id="investment-form" method="POST">
-                        <div class="form-group">
-                            <input type="text" name="organization" id="investment-org" placeholder="Name / Organization" required>
-                        </div>
-                        <div class="form-group">
-                            <input type="email" name="email" id="investment-email" placeholder="Business Email" required>
-                        </div>
-                        <div class="form-group">
-                            <select name="interest_type" id="investment-type" required>
-                                <option value="" disabled selected>Interest Type</option>
-                                <option value="seed">Seed Investment</option>
-                                <option value="venture">Venture Capital</option>
-                                <option value="partnership">Strategic Partnership</option>
-                                <option value="grant">Research Grant</option>
-                                <option value="other">Other</option>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <textarea name="proposal" id="investment-proposal" rows="5" placeholder="Proposal Summary" required></textarea>
-                        </div>
-                        <div id="investment-status" class="form-status"></div>
-                        <button type="submit" class="btn btn-primary" style="width: 100%;">
-                            <i class="fas fa-chart-line"></i> Submit Proposal
-                        </button>
-                    </form>
-                </div>
+                <form action="https://formspree.io/f/i.one.x.contact.77@gmail.com" method="POST">
+                    <div class="form-field">
+                        <label>Name</label>
+                        <input type="text" name="name" placeholder="Contact Name" required>
+                    </div>
+                    <div class="form-field">
+                        <label>Email</label>
+                        <input type="email" name="_replyto" placeholder="email@address.com" required>
+                    </div>
+                    <div class="form-field">
+                        <label>Category of Interest</label>
+                        <select name="inquiry-type">
+                            <option value="investment">Investment</option>
+                            <option value="mentorship">Technical Mentorship</option>
+                            <option value="partnership">Strategic Partnership</option>
+                            <option value="other">General Inquiry</option>
+                        </select>
+                    </div>
+                    <div class="form-field">
+                        <label>Message</label>
+                        <textarea name="message" rows="6" placeholder="Transmission details..."></textarea>
+                    </div>
+                    <button type="submit" class="submit-trigger">Send</button>
+                </form>
             </div>
         </div>
     </section>
 
-    <!-- Footer -->
     <footer>
         <div class="container">
-            <div class="footer-content">
-                <div class="footer-about">
-                    <div class="footer-logo">i-<span>one</span>-x</div>
-                    <p>Advanced ion propulsion systems for the next generation of space exploration.</p>
+            <div class="footer-wrap">
+                <div>
+                    <a href="#" class="footer-logo">I-ONE-X</a>
+                    <p class="dim" style="margin-top: 2rem; font-size: 0.9rem; line-height: 1.8;">Early-stage research into scalable electric propulsion systems, focused on simulation-driven feasibility and subsystem modeling.</p>
                 </div>
-
-                <div class="footer-links">
-                    <h4>Quick Links</h4>
-                    <ul>
-                        <li><a href="#home">Home</a></li>
-                        <li><a href="#about">About</a></li>
-                        <li><a href="#system">System Overview</a></li>
-                        <li><a href="#requirements">Requirements</a></li>
-                        <li><a href="#contact">Contact</a></li>
-                    </ul>
+                <div>
+                    <p class="footer-head">Project</p>
+                    <a href="#thesis" class="footer-link">The Thesis</a>
+                    <a href="#architecture" class="footer-link">Architecture</a>
+                    <a href="#research" class="footer-link">R&D Pillars</a>
                 </div>
-
-                <div class="footer-contact">
-                    <h4>Contact Info</h4>
-                    <p style="color: var(--gray);">Please use the contact forms above to reach our team.</p>
+                <div>
+                    <p class="footer-head">Company</p>
+                    <a href="https://www.linkedin.com/company/111693130" class="footer-link">LinkedIn</a>
+                    <a href="#team" class="footer-link">Leadership</a>
+                    <a href="#contact" class="footer-link">Contact</a>
                 </div>
             </div>
-
-            <div class="copyright">
-                <p>&copy; 2026 i-one-x. All rights reserved. | Designed for Advanced Ion Thruster Technology</p>
+            <div class="flex-center" style="border-top: 1px solid var(--border); padding-top: 50px;">
+                <span class="mono" style="color: var(--text-dim); font-size: 0.6rem;">&copy; 2026 I-ONE-X RESEARCH SYSTEMS</span>
+                <span class="mono" style="color: var(--text-dim); font-size: 0.6rem;">Conceptual Phase // Build v1.0.9</span>
             </div>
         </div>
     </footer>
 
-    <script>
-        // Mobile Navigation Toggle
-        const mobileToggle = document.getElementById('mobile-toggle');
-        const navMenu = document.getElementById('nav-menu');
-
-        mobileToggle.addEventListener('click', () => {
-            navMenu.classList.toggle('active');
-            mobileToggle.querySelector('i').classList.toggle('fa-bars');
-            mobileToggle.querySelector('i').classList.toggle('fa-times');
-        });
-
-        // Close mobile menu when clicking on a link
-        document.querySelectorAll('.nav-menu a').forEach(link => {
-            link.addEventListener('click', () => {
-                navMenu.classList.remove('active');
-                mobileToggle.querySelector('i').classList.remove('fa-times');
-                mobileToggle.querySelector('i').classList.add('fa-bars');
-            });
-        });
-
-        // Header scroll effect
-        window.addEventListener('scroll', () => {
-            const header = document.getElementById('header');
-            if (window.scrollY > 50) {
-                header.classList.add('scrolled');
-            } else {
-                header.classList.remove('scrolled');
-            }
-        });
-
-        // Smooth scrolling for anchor links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-
-                const targetId = this.getAttribute('href');
-                if (targetId === '#') return;
-
-                const targetElement = document.querySelector(targetId);
-                if (targetElement) {
-                    window.scrollTo({
-                        top: targetElement.offsetTop - 80,
-                        behavior: 'smooth'
-                    });
-                }
-            });
-        });
-
-        // Form submission handling
-        const generalForm = document.getElementById('general-form');
-        const investmentForm = document.getElementById('investment-form');
-        const generalStatus = document.getElementById('general-status');
-        const investmentStatus = document.getElementById('investment-status');
-
-        generalForm.addEventListener('submit', async (e) => {
-            e.preventDefault();
-            
-            // Show loading state
-            const submitBtn = generalForm.querySelector('button[type="submit"]');
-            const originalText = submitBtn.innerHTML;
-            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
-            submitBtn.disabled = true;
-            
-            // Prepare form data
-            const formData = new FormData(generalForm);
-            formData.append('_subject', 'New General Inquiry from i-one-x Website');
-            formData.append('_replyto', formData.get('email'));
-            formData.append('_cc', 'i.one.x.contact.77@gmail.com');
-            
-            try {
-                const response = await fetch('https://formsubmit.co/ajax/i.one.x.contact.77@gmail.com', {
-                    method: 'POST',
-                    body: formData,
-                    headers: {
-                        'Accept': 'application/json'
-                    }
-                });
-                
-                const result = await response.json();
-                
-                if (result.success) {
-                    generalStatus.textContent = 'Thank you! Your message has been sent successfully.';
-                    generalStatus.className = 'form-status success';
-                    generalForm.reset();
-                } else {
-                    throw new Error('Submission failed');
-                }
-            } catch (error) {
-                generalStatus.textContent = 'Sorry, there was an error sending your message. Please try again.';
-                generalStatus.className = 'form-status error';
-            } finally {
-                submitBtn.innerHTML = originalText;
-                submitBtn.disabled = false;
-                
-                // Hide status message after 5 seconds
-                setTimeout(() => {
-                    generalStatus.className = 'form-status';
-                    generalStatus.textContent = '';
-                }, 5000);
-            }
-        });
-
-        investmentForm.addEventListener('submit', async (e) => {
-            e.preventDefault();
-            
-            // Show loading state
-            const submitBtn = investmentForm.querySelector('button[type="submit"]');
-            const originalText = submitBtn.innerHTML;
-            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
-            submitBtn.disabled = true;
-            
-            // Prepare form data
-            const formData = new FormData(investmentForm);
-            formData.append('_subject', 'New Investment Proposal from i-one-x Website');
-            formData.append('_replyto', formData.get('email'));
-            formData.append('_cc', 'i.one.x.contact.77@gmail.com');
-            
-            try {
-                const response = await fetch('https://formsubmit.co/ajax/i.one.x.contact.77@gmail.com', {
-                    method: 'POST',
-                    body: formData,
-                    headers: {
-                        'Accept': 'application/json'
-                    }
-                });
-                
-                const result = await response.json();
-                
-                if (result.success) {
-                    investmentStatus.textContent = 'Thank you! Your proposal has been submitted successfully.';
-                    investmentStatus.className = 'form-status success';
-                    investmentForm.reset();
-                } else {
-                    throw new Error('Submission failed');
-                }
-            } catch (error) {
-                investmentStatus.textContent = 'Sorry, there was an error submitting your proposal. Please try again.';
-                investmentStatus.className = 'form-status error';
-            } finally {
-                submitBtn.innerHTML = originalText;
-                submitBtn.disabled = false;
-                
-                // Hide status message after 5 seconds
-                setTimeout(() => {
-                    investmentStatus.className = 'form-status';
-                    investmentStatus.textContent = '';
-                }, 5000);
-            }
-        });
-    </script>
 </body>
-
 </html>
