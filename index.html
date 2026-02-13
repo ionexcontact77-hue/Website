@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>i-one-x | Large-Scale Ion Propulsion Systems</title>
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -10,8 +10,8 @@
     <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Plus+Jakarta+Sans:wght@200;400;600;800&display=swap" rel="stylesheet">
 
     <style>
-        /* I-ONE-X DESIGN SYSTEM v4.0
-           Focus: High-Fidelity Conceptual Engineering
+        /* I-ONE-X RESPONSIVE SYSTEM v5.0
+           Focus: High-Fidelity Mobile & Desktop UI
         */
         :root {
             --bg: #030303;
@@ -26,19 +26,20 @@
             --text-dim: #4b4b4b;
             --font-main: 'Plus Jakarta Sans', sans-serif;
             --font-mono: 'JetBrains Mono', monospace;
-            --header-height: 90px;
-            --transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+            --header-height: 80px;
+            --transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
         /* GLOBAL RESET */
         * { margin: 0; padding: 0; box-sizing: border-box; outline: none; }
-        html { scroll-behavior: smooth; }
+        html { scroll-behavior: smooth; overflow-x: hidden; }
         body { 
             background: var(--bg); 
             color: var(--text-primary); 
             font-family: var(--font-main); 
-            line-height: 1.7;
+            line-height: 1.6;
             -webkit-font-smoothing: antialiased;
+            overflow-x: hidden;
         }
 
         /* SCROLLBAR */
@@ -47,106 +48,114 @@
         ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 10px; }
 
         /* LAYOUT & CONTAINERS */
-        .container { max-width: 1300px; margin: 0 auto; padding: 0 3rem; }
-        .flex-center { display: flex; align-items: center; justify-content: space-between; }
+        .container { max-width: 1300px; margin: 0 auto; padding: 0 2rem; }
+        .flex-center { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem; }
         .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; }
         .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; }
-        section { padding: 140px 0; border-bottom: 1px solid var(--border); }
+        section { padding: clamp(60px, 10vw, 140px) 0; border-bottom: 1px solid var(--border); }
         
-        /* TYPOGRAPHY */
+        /* TYPOGRAPHY - Fluid Sizing */
         .mono { font-family: var(--font-mono); font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.2em; color: var(--accent); }
-        h1 { font-size: clamp(3.5rem, 11vw, 7.5rem); font-weight: 800; line-height: 0.85; letter-spacing: -0.06em; margin-bottom: 2.5rem; }
-        h2 { font-size: 3.8rem; font-weight: 700; line-height: 1; margin-bottom: 2rem; letter-spacing: -0.04em; }
-        h3 { font-size: 1.6rem; margin-bottom: 1.2rem; font-weight: 600; color: #fff; }
-        p { font-size: 1.2rem; color: var(--text-secondary); max-width: 750px; font-weight: 300; }
+        h1 { font-size: clamp(2.8rem, 10vw, 7.5rem); font-weight: 800; line-height: 0.85; letter-spacing: -0.06em; margin-bottom: 2.5rem; }
+        h2 { font-size: clamp(2.2rem, 5vw, 3.8rem); font-weight: 700; line-height: 1.1; margin-bottom: 2rem; letter-spacing: -0.04em; }
+        h3 { font-size: 1.4rem; margin-bottom: 1.2rem; font-weight: 600; color: #fff; }
+        p { font-size: clamp(1rem, 2vw, 1.2rem); color: var(--text-secondary); max-width: 750px; font-weight: 300; }
         .dim { color: var(--text-dim); }
 
         /* NAVIGATION */
         nav {
             position: fixed; top: 0; width: 100%; z-index: 1000;
-            background: rgba(3, 3, 3, 0.9);
-            backdrop-filter: blur(25px);
+            background: rgba(3, 3, 3, 0.95);
+            backdrop-filter: blur(20px);
             border-bottom: 1px solid var(--border);
             height: var(--header-height);
             display: flex; align-items: center;
         }
         .nav-inner { display: flex; justify-content: space-between; align-items: center; width: 100%; }
-        .logo { font-family: var(--font-mono); font-weight: 800; font-size: 1.5rem; color: #fff; text-decoration: none; letter-spacing: -1px; }
-        .nav-links { display: flex; gap: 3.5rem; }
+        .logo { font-family: var(--font-mono); font-weight: 800; font-size: 1.4rem; color: #fff; text-decoration: none; letter-spacing: -1px; }
+        .nav-links { display: flex; gap: 2.5rem; }
         .nav-links a { text-decoration: none; color: var(--text-secondary); font-family: var(--font-mono); font-size: 0.75rem; transition: var(--transition); }
         .nav-links a:hover { color: var(--accent); }
 
         /* HERO SECTION */
-        .hero { padding: 260px 0 140px; }
+        .hero { padding: 180px 0 100px; }
         .status-pill { 
             background: var(--surface-mid); border: 1px solid var(--border); 
-            padding: 10px 20px; border-radius: 100px; display: inline-flex; 
-            align-items: center; gap: 12px; margin-bottom: 3.5rem;
+            padding: 8px 18px; border-radius: 100px; display: inline-flex; 
+            align-items: center; gap: 10px; margin-bottom: 3rem;
         }
-        .status-indicator { width: 10px; height: 10px; background: var(--accent); border-radius: 50%; box-shadow: 0 0 15px var(--accent); }
-        .hero-actions { display: flex; gap: 2.5rem; margin-top: 5rem; align-items: center; }
-        .btn-primary { background: var(--text-primary); color: var(--bg); padding: 1.4rem 3.5rem; border-radius: 2px; text-decoration: none; font-weight: 800; transition: var(--transition); }
-        .btn-primary:hover { transform: translateY(-5px); box-shadow: 0 10px 40px rgba(59, 130, 246, 0.2); }
+        .status-indicator { width: 8px; height: 8px; background: var(--accent); border-radius: 50%; box-shadow: 0 0 15px var(--accent); }
+        .hero-actions { display: flex; gap: 2rem; margin-top: 4rem; align-items: center; flex-wrap: wrap; }
+        .btn-primary { background: var(--text-primary); color: var(--bg); padding: 1.2rem 3rem; border-radius: 2px; text-decoration: none; font-weight: 800; transition: var(--transition); }
+        .btn-primary:hover { background: var(--accent); color: #fff; transform: translateY(-3px); }
         .btn-secondary { color: var(--text-secondary); text-decoration: none; font-family: var(--font-mono); font-size: 0.8rem; border-bottom: 1px solid var(--border); padding-bottom: 5px; transition: var(--transition); }
-        .btn-secondary:hover { border-color: var(--accent); color: #fff; }
 
         /* CONTENT CARDS */
         .card { 
             background: var(--surface-low); border: 1px solid var(--border); 
-            padding: 4rem; border-radius: 2px; transition: var(--transition);
+            padding: clamp(2rem, 5vw, 4rem); border-radius: 2px; transition: var(--transition);
         }
-        .card:hover { border-color: var(--accent); background: var(--surface-mid); transform: scale(1.02); }
+        .card:hover { border-color: var(--accent); background: var(--surface-mid); }
 
         /* RESEARCH AREAS BLOCK */
         .research-item { 
-            padding: 2.5rem 0; border-bottom: 1px solid var(--border); 
-            display: flex; justify-content: space-between; align-items: flex-start;
+            padding: 2rem 0; border-bottom: 1px solid var(--border); 
+            display: flex; justify-content: space-between; align-items: flex-start; gap: 2rem;
             transition: var(--transition);
         }
         .research-item:last-child { border-bottom: none; }
-        .research-item.active { border-left: 4px solid var(--accent); padding-left: 2rem; background: var(--accent-dim); }
-        .research-label { font-family: var(--font-mono); font-size: 0.8rem; font-weight: bold; }
-        .research-desc { max-width: 500px; font-size: 0.95rem; color: var(--text-secondary); }
-
-        /* THE GAP CONCEPTUAL VISUAL */
-        .gap-container { background: var(--surface-low); padding: 5rem; border: 1px solid var(--border); position: relative; overflow: hidden; }
-        .blueprint-overlay { position: absolute; inset: 0; background-image: radial-gradient(var(--border) 1px, transparent 1px); background-size: 30px 30px; opacity: 0.4; }
+        .research-item.active { border-left: 3px solid var(--accent); padding-left: 1.5rem; background: var(--accent-dim); }
+        .research-label { font-family: var(--font-mono); font-size: 0.8rem; font-weight: bold; min-width: 140px; }
+        .research-desc { font-size: 0.95rem; color: var(--text-secondary); }
 
         /* TEAM SECTION */
-        .team-box { background: var(--surface-mid); border: 1px solid var(--border); padding: 5rem; }
-        .member-info { margin-bottom: 4rem; }
-        .member-role { font-family: var(--font-mono); color: var(--accent); font-size: 0.8rem; margin-bottom: 1rem; display: block; }
+        .team-box { background: var(--surface-mid); border: 1px solid var(--border); padding: clamp(2rem, 5vw, 5rem); }
+        .member-info { margin-bottom: 3rem; }
+        .member-role { font-family: var(--font-mono); color: var(--accent); font-size: 0.8rem; margin-bottom: 0.5rem; display: block; }
         
         /* CONTACT FORM */
-        .contact-layout { display: grid; grid-template-columns: 0.8fr 1.2fr; gap: 8rem; }
-        .form-field { margin-bottom: 2rem; }
-        .form-field label { display: block; font-family: var(--font-mono); font-size: 0.7rem; color: var(--text-dim); margin-bottom: 1rem; text-transform: uppercase; }
+        .contact-layout { display: grid; grid-template-columns: 0.8fr 1.2fr; gap: 5rem; }
+        .form-field { margin-bottom: 1.5rem; }
+        .form-field label { display: block; font-family: var(--font-mono); font-size: 0.65rem; color: var(--text-dim); margin-bottom: 0.8rem; text-transform: uppercase; }
         input, select, textarea {
             width: 100%; background: var(--surface-high); border: 1px solid var(--border);
-            padding: 1.5rem; color: #fff; font-family: var(--font-main); font-size: 1rem;
+            padding: 1.2rem; color: #fff; font-family: var(--font-main); font-size: 1rem;
             transition: var(--transition); border-radius: 0;
         }
-        input:focus, textarea:focus { border-color: var(--accent); }
         .submit-trigger {
-            background: var(--text-primary); color: var(--bg); border: none; padding: 1.5rem;
+            background: var(--text-primary); color: var(--bg); border: none; padding: 1.2rem;
             font-weight: 900; width: 100%; cursor: pointer; transition: var(--transition); text-transform: uppercase; font-family: var(--font-mono);
         }
         .submit-trigger:hover { background: var(--accent); color: #fff; }
 
         /* FOOTER */
-        footer { padding: 120px 0 60px; border-top: 1px solid var(--border); background: #010101; }
-        .footer-wrap { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 5rem; margin-bottom: 80px; }
-        .footer-logo { font-family: var(--font-mono); font-weight: 900; font-size: 1.8rem; color: #fff; text-decoration: none; }
-        .footer-head { font-family: var(--font-mono); color: var(--text-dim); font-size: 0.7rem; margin-bottom: 2rem; text-transform: uppercase; }
-        .footer-link { display: block; color: var(--text-secondary); text-decoration: none; margin-bottom: 1rem; font-size: 0.95rem; transition: var(--transition); }
+        footer { padding: 100px 0 50px; border-top: 1px solid var(--border); background: #010101; }
+        .footer-wrap { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 4rem; margin-bottom: 60px; }
+        .footer-logo { font-family: var(--font-mono); font-weight: 900; font-size: 1.5rem; color: #fff; text-decoration: none; }
+        .footer-head { font-family: var(--font-mono); color: var(--text-dim); font-size: 0.7rem; margin-bottom: 1.5rem; text-transform: uppercase; }
+        .footer-link { display: block; color: var(--text-secondary); text-decoration: none; margin-bottom: 0.8rem; font-size: 0.9rem; transition: var(--transition); }
         .footer-link:hover { color: var(--accent); padding-left: 5px; }
 
-        /* RESPONSIVE */
+        /* ——————————————————————————————————————————————————
+           MOBILE ADAPTATION (MEDIA QUERIES)
+           —————————————————————————————————————————————————— */
+        
+        /* Tablets and Small Desktops */
         @media (max-width: 1024px) {
-            .grid-2, .grid-3, .contact-layout, .footer-wrap { grid-template-columns: 1fr; gap: 4rem; }
-            h1 { font-size: 4.5rem; }
-            h2 { font-size: 3rem; }
-            .nav-links { display: none; }
+            .grid-2, .grid-3, .contact-layout { grid-template-columns: 1fr; gap: 3rem; }
+            .footer-wrap { grid-template-columns: 1fr 1fr; }
+            .nav-links { gap: 1.5rem; }
+        }
+
+        /* Small Mobile Devices */
+        @media (max-width: 600px) {
+            .container { padding: 0 1.2rem; }
+            .nav-links { display: none; } /* Mobile users typically use the logo to reset or we add a menu later */
+            .hero-actions { flex-direction: column; align-items: stretch; }
+            .btn-primary { text-align: center; }
+            .footer-wrap { grid-template-columns: 1fr; gap: 2.5rem; }
+            .research-item { flex-direction: column; gap: 0.5rem; }
+            .flex-center { flex-direction: column; text-align: center; }
         }
     </style>
 </head>
@@ -158,8 +167,8 @@
             <div class="nav-links">
                 <a href="#thesis">_Thesis</a>
                 <a href="#architecture">_Architecture</a>
-                <a href="#research">_R&D_Focus</a>
-                <a href="#team">_Leadership</a>
+                <a href="#research">_Focus</a>
+                <a href="#team">_Team</a>
                 <a href="#contact">_Contact</a>
             </div>
         </div>
@@ -171,23 +180,21 @@
             <span class="mono" style="color: #fff;">Stage: Concept / Simulation</span>
         </div>
         <h1>Heavy-Lift <br>Ion Mobility.</h1>
-        <p>We are investigating large-diameter gridded ion thruster concepts targeting higher thrust regimes than current small-satellite systems. Current work focuses on simulation-driven evaluation of subsystem performance and feasibility.</p>
+        <p>Investigating large-diameter gridded ion thruster concepts targeting higher thrust regimes than current systems. Current work focuses on simulation-driven evaluation of subsystem performance.</p>
         <div class="hero-actions">
             <a href="#contact" class="btn-primary">Inquiry</a>
-            <a href="#thesis" class="btn-secondary">The Thesis ↓</a>
+            <a href="#thesis" class="btn-secondary">View The Thesis ↓</a>
         </div>
     </header>
 
     <section id="thesis">
         <div class="container">
             <span class="mono">01 // Executive Thesis</span>
-            <div class="grid-2" style="margin-top: 4rem; align-items: center;">
+            <div class="grid-2" style="margin-top: 3rem;">
+                <h2>Scaling Electric <br>Propulsion.</h2>
                 <div>
-                    <h2>Scaling Electric Propulsion</h2>
-                </div>
-                <div>
-                    <p>Most electric propulsion systems today are designed for small satellites operating in low Earth orbit. While efficient, these platforms do not scale cleanly in thrust, thermal management, or lifetime for higher-mass orbital transfers.</p>
-                    <p style="margin-top: 2rem; color: var(--text-dim);">i-one-x is exploring large-class gridded ion thruster architectures through computational modeling of discharge chambers, acceleration grids, and thermal behavior. This project is currently in an early research phase, with efforts focused on subsystem-level feasibility prior to hardware development.</p>
+                    <p>Current electric propulsion is optimized for small-satellite station keeping. However, these architectures do not scale linearly for the high-mass orbital transfers required for deep-space logistics.</p>
+                    <p style="margin-top: 1.5rem; color: var(--text-dim);">i-one-x explores gridded ion architectures through computational modeling of discharge chambers and acceleration grids to bridge this commercial thrust gap.</p>
                 </div>
             </div>
         </div>
@@ -195,9 +202,9 @@
 
     <section id="architecture" style="background: var(--surface-low);">
         <div class="container">
-            <div style="margin-bottom: 6rem;">
+            <div style="margin-bottom: 4rem;">
                 <span class="mono">02 // System Architecture</span>
-                <h2 style="margin-top: 1.5rem;">Modular Foundations.</h2>
+                <h2 style="margin-top: 1rem;">Modular Design.</h2>
             </div>
             
             
@@ -206,17 +213,17 @@
                 <div class="card">
                     <span class="mono" style="margin-bottom: 1.5rem; display: block;">Component A</span>
                     <h3>High-Flow Ionization</h3>
-                    <p class="dim" style="font-size: 0.95rem;">Modeling discharge chambers to improve propellant utilization and plasma density uniformity in large-diameter geometries</p>
+                    <p class="dim" style="font-size: 0.95rem;">Modeling discharge chambers to improve propellant utilization and plasma density uniformity.</p>
                 </div>
                 <div class="card">
                     <span class="mono" style="margin-bottom: 1.5rem; display: block;">Component B</span>
                     <h3>Electrostatic Grids</h3>
-                    <p class="dim" style="font-size: 0.95rem;">Evaluating multi-grid acceleration concepts with emphasis on erosion behavior and projected operational lifetime.</p>
+                    <p class="dim" style="font-size: 0.95rem;">Evaluating multi-grid concepts with emphasis on erosion behavior and operational lifetime.</p>
                 </div>
                 <div class="card">
                     <span class="mono" style="margin-bottom: 1.5rem; display: block;">Component C</span>
                     <h3>Plume Control</h3>
-                    <p class="dim" style="font-size: 0.95rem;">Studying neutralizer integration to maintain charge balance and reduce plume interaction effects.</p>
+                    <p class="dim" style="font-size: 0.95rem;">Studying neutralizer integration to maintain charge balance and reduce interaction effects.</p>
                 </div>
             </div>
         </div>
@@ -227,35 +234,31 @@
             <div class="grid-2">
                 <div>
                     <span class="mono">03 // Active R&D Pillars</span>
-                    <h2 style="margin-top: 1.5rem;">Priority <br>Workstreams.</h2>
-                    <p class="dim">Current efforts are focused on simulation and feasibility analysis prior to any physical prototyping.</p>
+                    <h2 style="margin-top: 1rem;">Workstreams.</h2>
+                    <p class="dim">Current efforts are focused on simulation-driven feasibility analysis.</p>
                 </div>
                 <div style="background: var(--surface-low); border: 1px solid var(--border); padding: 1rem;">
                     
                     <div class="research-item active">
-                        <div>
-                            <span class="research-label">Magnetic Confinement</span>
-                            <p class="mono" style="font-size: 0.6rem; color: var(--accent); margin-top: 0.5rem;">Current Phase: Simulation Stage</p>
-                        </div>
+                        <span class="research-label">Magnetic Confinement</span>
                         <div class="research-desc">
-                            Researching permanent magnet arrangements to optimize plasma confinement and reduce ion loss to the discharge chamber walls.
+                            Researching magnet arrangements to optimize plasma confinement and reduce ion loss to chamber walls.
                         </div>
                     </div>
 
                     <div class="research-item">
                         <span class="research-label">Thermal Dynamics</span>
                         <div class="research-desc">
-                            Modeling radiant heat rejection requirements for high-power (10kW+) thruster operation in vacuum environments.
+                            Modeling heat rejection requirements for high-power (10kW+) thruster operation in vacuum.
                         </div>
                     </div>
 
                     <div class="research-item">
                         <span class="research-label">Grid Erosion</span>
                         <div class="research-desc">
-                            Simulating ion impingement profiles to predict grid life-cycles and optimize aperture alignment.
+                            Simulating ion impingement profiles to predict life-cycles and optimize aperture alignment.
                         </div>
                     </div>
-
                 </div>
             </div>
         </div>
@@ -264,21 +267,21 @@
     <section id="team" style="background: #050505;">
         <div class="container">
             <span class="mono">04 // Team & Origin</span>
-            <div class="grid-2" style="margin-top: 4rem; align-items: flex-start;">
+            <div class="grid-2" style="margin-top: 3rem;">
                 <div>
-                    <h2>Team</h2>
-                    <p>i-one-x originated from collaborative work in competitive physics. We currently operate as a small, independent research effort focused on early-stage electric propulsion modeling.</p>
+                    <h2>Collaborative Physics.</h2>
+                    <p>i-one-x originated from collaborative excellence in competitive physics. We operate as an independent research unit focused on early-stage electric propulsion modeling.</p>
                 </div>
                 <div class="team-box">
                     <div class="member-info">
-                        <span class="member-role">Founder // Engineering & Simulation</span>
+                        <span class="member-role">Founder // Lead Engineering</span>
                         <h3>Laurenz Grasser</h3>
-                        <p class="dim" style="font-size: 1rem;">Working on conceptual system architecture and computational modeling, with emphasis on ion acceleration behavior and scaling considerations.</p>
+                        <p class="dim" style="font-size: 0.95rem;">Directing conceptual system architecture and computational modeling.</p>
                     </div>
                     <div class="member-info">
                         <span class="member-role">COO // Operations</span>
                         <h3>Julius Rebernik</h3>
-                        <p class="dim" style="font-size: 1rem;">Overseeing corporate strategy, investor relations, and the roadmap to business registration.</p>
+                        <p class="dim" style="font-size: 0.95rem;">Overseeing corporate strategy and the roadmap to business registration.</p>
                     </div>
                 </div>
             </div>
@@ -289,34 +292,33 @@
         <div class="container">
             <div class="contact-layout">
                 <div>
-                    <span class="mono">05 // Contact</span>
-                    <h2 style="margin-top: 1.5rem;">Contact</h2>
-                    <p class="dim" style="margin-top: 2rem;">We are open to conversations with technical mentors and domain experts interested in early-stage electric propulsion research.</p>
+                    <span class="mono">05 // Inquiry</span>
+                    <h2 style="margin-top: 1rem;">Connect.</h2>
+                    <p class="dim">We welcome dialogue with technical mentors and domain experts in the propulsion sector.</p>
                 </div>
 
                 <form action="https://formspree.io/f/i.one.x.contact.77@gmail.com" method="POST">
                     <div class="form-field">
                         <label>Name</label>
-                        <input type="text" name="name" placeholder="Contact Name" required>
+                        <input type="text" name="name" required>
                     </div>
                     <div class="form-field">
                         <label>Email</label>
-                        <input type="email" name="_replyto" placeholder="email@address.com" required>
+                        <input type="email" name="_replyto" required>
                     </div>
                     <div class="form-field">
-                        <label>Category of Interest</label>
+                        <label>Subject</label>
                         <select name="inquiry-type">
-                            <option value="investment">Investment</option>
                             <option value="mentorship">Technical Mentorship</option>
-                            <option value="partnership">Strategic Partnership</option>
-                            <option value="other">General Inquiry</option>
+                            <option value="partnership">Partnership</option>
+                            <option value="general">General Inquiry</option>
                         </select>
                     </div>
                     <div class="form-field">
                         <label>Message</label>
-                        <textarea name="message" rows="6" placeholder="Transmission details..."></textarea>
+                        <textarea name="message" rows="5"></textarea>
                     </div>
-                    <button type="submit" class="submit-trigger">Send</button>
+                    <button type="submit" class="submit-trigger">Transmit</button>
                 </form>
             </div>
         </div>
@@ -327,24 +329,24 @@
             <div class="footer-wrap">
                 <div>
                     <a href="#" class="footer-logo">I-ONE-X</a>
-                    <p class="dim" style="margin-top: 2rem; font-size: 0.9rem; line-height: 1.8;">Early-stage research into scalable electric propulsion systems, focused on simulation-driven feasibility and subsystem modeling.</p>
+                    <p class="dim" style="margin-top: 1.5rem; font-size: 0.85rem;">Simulation-driven research into scalable electric propulsion systems.</p>
                 </div>
                 <div>
                     <p class="footer-head">Project</p>
-                    <a href="#thesis" class="footer-link">The Thesis</a>
+                    <a href="#thesis" class="footer-link">Thesis</a>
                     <a href="#architecture" class="footer-link">Architecture</a>
-                    <a href="#research" class="footer-link">R&D Pillars</a>
+                    <a href="#research" class="footer-link">Focus</a>
                 </div>
                 <div>
                     <p class="footer-head">Company</p>
                     <a href="https://www.linkedin.com/company/111693130" class="footer-link">LinkedIn</a>
-                    <a href="#team" class="footer-link">Leadership</a>
+                    <a href="#team" class="footer-link">Team</a>
                     <a href="#contact" class="footer-link">Contact</a>
                 </div>
             </div>
-            <div class="flex-center" style="border-top: 1px solid var(--border); padding-top: 50px;">
+            <div class="flex-center" style="border-top: 1px solid var(--border); padding-top: 40px;">
                 <span class="mono" style="color: var(--text-dim); font-size: 0.6rem;">&copy; 2026 I-ONE-X RESEARCH SYSTEMS</span>
-                <span class="mono" style="color: var(--text-dim); font-size: 0.6rem;">Conceptual Phase // Build v1.0.9</span>
+                <span class="mono" style="color: var(--text-dim); font-size: 0.6rem;">v1.0.9 // GitHub Pages</span>
             </div>
         </div>
     </footer>
